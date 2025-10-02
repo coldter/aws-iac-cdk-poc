@@ -1,0 +1,20 @@
+{
+  "name": "aws-iac-cdk",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "infrastructure"
+  ],
+  "scripts": {
+    "check": "biome check --write",
+    "dev": "turbo dev",
+    "build": "turbo build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.2",
+    "turbo": "^2.5.6",
+    "ultracite": "5.3.3"
+  },
+  "packageManager": "bun@1.2.21"
+}
