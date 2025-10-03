@@ -15,7 +15,7 @@ const statefulStack = new StatefulStack(app, "StatefulStack", {
   tags: CONFIG.tags,
 });
 
-new ApiLambdaStack(app, "ApiLambdaStack", {
+const apiLambdaStack = new ApiLambdaStack(app, "ApiLambdaStack", {
   env: {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
@@ -26,3 +26,5 @@ new ApiLambdaStack(app, "ApiLambdaStack", {
   accessPoint: statefulStack.accessPoint,
   lambdaSecurityGroup: statefulStack.lambdaSecurityGroup,
 });
+
+apiLambdaStack.addDependency(statefulStack);

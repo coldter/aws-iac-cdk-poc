@@ -129,7 +129,7 @@ const todoRoutes = {
       params: z.object({ id: z.string() }),
     },
     responses: {
-      204: {
+      200: {
         description: "Todo deleted",
       },
       ...commonErrorResponses,

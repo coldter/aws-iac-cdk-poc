@@ -128,7 +128,7 @@ const todoHandler = app
     if (!deleted.length) {
       throw new HTTPException(404, { message: "Todo not found" });
     }
-    return c.json({}, 201);
+    return c.json({}, 200);
   });
 
 export default todoHandler;
