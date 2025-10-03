@@ -39,32 +39,6 @@ export class ApiLambdaStack extends Stack {
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
-    // Fuck ARM architecture support cross-platform is fucked
-    // const libsqlLayer = new lambda.LayerVersion(this, "LibsqlLayer", {
-    //   compatibleArchitectures: [lambda.Architecture.ARM_64],
-    //   compatibleRuntimes: [lambda.Runtime.NODEJS_22_X],
-    //   code: lambda.Code.fromAsset("./layers/libsql/nodejs", {
-    //     bundling: {
-    //       platform: "linux/arm64",
-    //       image: lambda.Runtime.NODEJS_22_X.bundlingImage,
-    //       environment: {
-    //         npm_config_cache: "/tmp/npm_cache",
-    //         npm_config_update_notifier: "false",
-    //       },
-    //       command: [
-    //         "bash",
-    //         "-xc",
-    //         [
-    //           "cd $(mktemp -d)",
-    //           "cp /asset-input/package* .",
-    //           "npm --prefix . i @libsql/client",
-    //           "cp -r node_modules /asset-output/",
-    //         ].join(" && "),
-    //       ],
-    //     },
-    //   }),
-    // });
-
     const apiFunction = new lambda.Function(this, "ApiFunction", {
       code: lambda.Code.fromAsset(serverRoot, {
         followSymlinks: cdk.SymlinkFollowMode.ALWAYS,
