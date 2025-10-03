@@ -1,3 +1,4 @@
+import * as cdk from "aws-cdk-lib";
 import { CfnOutput, RemovalPolicy, Stack, type StackProps } from "aws-cdk-lib";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as efs from "aws-cdk-lib/aws-efs";
@@ -73,6 +74,11 @@ export class StatefulStack extends Stack {
         uid: "1001",
       },
     });
+
+    cdk.Tags.of(this).add("Stack", "Stateful");
+    for (const [key, value] of Object.entries(props?.tags || {})) {
+      cdk.Tags.of(this).add(key, value);
+    }
 
     new CfnOutput(this, "VpcId", {
       value: this.vpc.vpcId,
